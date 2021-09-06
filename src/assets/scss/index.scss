@@ -1,3 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
 
+@import 'components/variables';
 @import 'components/header';
+
+@import 'pages/commons';
+@import 'pages/home';
+@import 'pages/profile';
+@import 'pages/realestate';
