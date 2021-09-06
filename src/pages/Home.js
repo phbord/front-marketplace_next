@@ -1,4 +1,5 @@
 import React from 'react'
+
 import data from '../data/dumbdata.json'
 import { Card } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
@@ -21,5 +22,5 @@ export const Home = () => {
 				</Card>
 			))}
 		</div>
-	)
+	</>)
 }
