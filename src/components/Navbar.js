@@ -1,18 +1,19 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu } from "antd";
+import { Link } from "react-router-dom";
 
-const { Header, Content, Footer } = Layout;
+const { Header } = Layout;
 export const Navbar = () => {
 	return (
 		<Layout>
-		
+
 			<Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
-				<Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+				<Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
 					<Menu.Item key="1">
-						Home
+						<Link to="/">Home</Link>
 					</Menu.Item>
 					<Menu.Item key="2">
-						Other Link
+						<Link to="/other">other</Link>
 					</Menu.Item>
 				</Menu>
 			</Header>
