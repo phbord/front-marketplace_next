@@ -12,10 +12,9 @@ export const Home = () => {
 
 			{flats.map(flat => (
 				<Card
-				style={{border:"1px solid black"}}
-					id={uuid_v4()}
+				
 					hoverable
-					style={{ width: 240 }}
+					style={{ width: 240, border:"1px solid black" }}
 					cover={<img alt="example" src={flat.images[0]} />}
 				>
 					<Meta title={flat.name}  />
