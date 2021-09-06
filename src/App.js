@@ -5,6 +5,8 @@ import "antd/dist/antd.css";
 import { Home } from "pages/Home";
 import { Other } from "pages/Other";
 import { Layout } from "antd";
+import { Login } from "pages/Login";
+import { Register } from "pages/Register";
 
 const { Content } = Layout;
 function App() {
@@ -17,8 +19,14 @@ function App() {
 				<Route exact path="/">
 					<Home />
 				</Route>
-				<Route path="/other">
+				<Route exact path="/other">
 					<Other />
+				</Route>
+				<Route exact path="/login">
+					<Login />
+				</Route>
+				<Route exact path="/register">
+					<Register />
 				</Route>
 			</Switch>
 			</Content>
