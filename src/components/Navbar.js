@@ -18,6 +18,9 @@ export const Navbar = () => {
 					<Menu.Item key="3">
 						<Link to="/login">login</Link>
 					</Menu.Item>
+					<Menu.Item key="4">
+						<Link to="/register">register</Link>
+					</Menu.Item>
 				</Menu>
 			</Header>
 		</Layout>

@@ -40,12 +40,36 @@ export const Register = () => {
 			</Form.Item>
 
 			<Form.Item
+				label="Email"
+				name="email"
+				rules={[
+					{
+						required: true,
+						message: 'Please input your email!',
+					},
+				]}
+			>
+				<Input />
+			</Form.Item>
+			<Form.Item
 				label="Password"
 				name="password"
 				rules={[
 					{
 						required: true,
 						message: 'Please input your password!',
+					},
+				]}
+			>
+				<Input.Password />
+			</Form.Item>
+			<Form.Item
+				label="Confirm password"
+				name="password_confirmation"
+				rules={[
+					{
+						required: true,
+						message: 'Please input your confirmation password!',
 					},
 				]}
 			>
