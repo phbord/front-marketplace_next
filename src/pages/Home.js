@@ -1,14 +1,18 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
+import { Layout } from 'antd';
 import { Card, Col, Row } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
 
-import data from '../data/dumbdata.json'
+import { findRealestates } from '../redux/realestates/realestatesActions'
+import data from '../data/dumbdata.json';
+
+const { Content } = Layout;
 
 export const Home = () => {
 	const { flats } = data
 	const { Meta } = Card;
-	const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
 	return (
 		<div>
