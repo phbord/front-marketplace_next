@@ -1,0 +1,17 @@
+{
+	"users":[
+		{
+			"email":"foobar@gmail.com",
+			"password":"foobar"
+			}
+	],
+	"flats":[
+		{
+			"name":"brigth flat on picaddely str",
+			"images":[
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReGX10igMjbsSu5CUVRfkQ5YMWAmpXFAUJ4w&usqp=CAU",
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDFwXa6dBrRBKB3jZmSAF3FDqAVyw3pmqZFQ&usqp=CAU"
+			]
+		}
+	]
+	}

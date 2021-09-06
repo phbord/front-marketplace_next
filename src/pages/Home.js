@@ -1,33 +1,26 @@
 import React from 'react'
-import { Layout } from "antd";
-import "antd/dist/antd.css";
 
-const { Content } = Layout;
-
+import data from '../data/dumbdata.json'
+import { Card } from 'antd';
+import { v4 as uuid_v4 } from "uuid";
 export const Home = () => {
-	const realEstates = [
-		{}
-	]
 
-	return (<>
-		<div className="home-header d-flex justify-content-center align-items-center">
-			<div>
-				<h1>List of real estate</h1>
-			</div>
-		</div>
-		<div className="container">
-			<ul className="row">
-				<li className="col-12 col-sm-6 col-md-4">
-					<div className="card mb-3">
-						<img src="" alt="" className="car-img-top" />
-						<div className="card-bodu">
-							<h5 className="card-title"></h5>
-							<p className="card-text"></p>
-							<a href="" className="btn primary">Details</a>
-						</div>
-					</div>
-				</li>
-			</ul>
+	const { flats } = data
+	const { Meta } = Card;
+	return (
+		<div>
+			home
+
+			{flats.map(flat => (
+				<Card
+				
+					hoverable
+					style={{ width: 240, border:"1px solid black" }}
+					cover={<img alt="example" src={flat.images[0]} />}
+				>
+					<Meta title={flat.name}  />
+				</Card>
+			))}
 		</div>
 	</>)
 }
