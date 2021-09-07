@@ -46,7 +46,7 @@ export const Realestate = () => {
           <p>Price: <strong>{flat.price}</strong></p>
           <p>Address: {flat.address}</p>
           <p>{flat.description}</p>
-          {/* <p>Owner: {flat.user.email}</p> */}
+          { <p>Owner: {flat?.user?.email}</p> }
         </Content>
       </>
     ) : (
