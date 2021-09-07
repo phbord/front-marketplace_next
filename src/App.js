@@ -15,6 +15,7 @@ function App() {
 		<Layout className="layout" style={{ backgroundColor: 'transparent' }}>
 			<Router>
 				<Navbar />
+				<Content className="site-layout" style={{ padding: "0 50px", marginTop: 64 }}>
 				<Switch>
 					<Route exact path="/">
 						<Home />
@@ -32,6 +33,7 @@ function App() {
 						<Register />
 					</Route>
 				</Switch>
+				</Content>
 			</Router>
 		</Layout>
 	);
