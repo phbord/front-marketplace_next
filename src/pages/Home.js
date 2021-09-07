@@ -1,21 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
 import { Layout, Card, Col, Row } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
 
-import { findRealestates } from '../redux/realestates/realestatesActions'
-
 const { Content } = Layout;
 
-export const Home = () => {
+export const Home = ({flats}) => {
 	const { Meta } = Card;
-  const dispatch = useDispatch()
-	const flats = useSelector(state => state.realestates.realestates) || []
-	
-	React.useEffect(() => {
-		dispatch(findRealestates('real_estates'))
-	}, [])
 
 	return (
 		<>

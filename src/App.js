@@ -13,7 +13,7 @@ import { findRealestates } from './redux/realestates/realestatesActions'
 
 function App() {
   const dispatch = useDispatch()
-	const flats = useSelector(state => state.realestates.realestates) || {}
+	const flats = useSelector(state => state.realestates.realestates) || []
   const [fetchOnce, setFetchOnce] = React.useState(false);
 	
 	React.useEffect(() => {
@@ -29,7 +29,7 @@ function App() {
 				<Navbar />
 				<Switch>
 					<Route exact path="/">
-						<Home />
+						<Home flats={flats} />
 					</Route>
 					<Route exact path="/real_estates/:id">
 						<Realestate />
