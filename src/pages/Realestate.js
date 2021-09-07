@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { Carousel, Layout, Image, Space, Col, Row } from 'antd';
 import { bottom } from '@popperjs/core';
 
-import { findOneRealestates, findOneCategories } from '../redux/realestate/realestateActions'
+import { findOneRealestates, findOneCategories } from '../redux/realestates/realestatesActions'
 
 const { Content } = Layout;
 
 export const Realestate = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
-	const flat = useSelector(state => state.realestate.realestate) || {}
+	const flat = useSelector(state => state.realestates.realestate) || {}
   const [fetchOnce, setFetchOnce] = React.useState(false);
 	
 	React.useEffect(() => {
