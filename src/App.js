@@ -35,7 +35,7 @@ function App() {
 						<Home flats={flats} />
 					</Route>
 					<Route exact path="/real_estates/:id">
-						<Realestate />
+						<Realestate flat={flats}/>
 					</Route>
 					<Route path="/other">
 						<Other />
