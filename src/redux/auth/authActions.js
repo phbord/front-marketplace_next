@@ -16,18 +16,22 @@ export const register = (info) => async(dispatch) => {
     },
     body: JSON.stringify(info)
   };
+
   const res = await fetch(`http://localhost:3000/api/signup`, config);
   console.log(res)
   token = await res.headers.get('authorization');
   const user = await res.json();
+
   if (user.data !== undefined) {
     Cookies.set('token', token.split(' ')[1], {secure:true});
     Cookies.set('id', user.data.id, {secure:true});
+
     dispatch({
       type: REGISTER,
       payload: user.data,
     });
-  } else {
+  } 
+  else {
     dispatch({
       type: AUTH_FAILURE,
       payload: user.errors
@@ -44,14 +48,17 @@ export const updateUser = (info) => async(dispatch) => {
     },
     body: JSON.stringify(info)
   };
+
   const res = await fetch(`http://localhost:3000/api/users/${Cookies.get('id')}`, config);
   const user = await res.json();
+
   if (user.data !== undefined) {
     dispatch({
       type: UPDATE_USER,
       payload: user.data,
     });
-  } else {
+  } 
+  else {
     dispatch({
       type: AUTH_FAILURE,
       payload: user.errors
@@ -61,6 +68,7 @@ export const updateUser = (info) => async(dispatch) => {
 
 export const login = (creds) => async(dispatch) => {
   let token = '';
+
   const config = {
     method: 'POST',
     headers: {
@@ -68,17 +76,23 @@ export const login = (creds) => async(dispatch) => {
     },
     body: JSON.stringify(creds)
   };
+
   const res = await fetch(`http://localhost:3000/api/login`, config);
+
   token = await res.headers.get('authorization')
+
   const user = await res.json();
+
   if (user.data) {
     Cookies.set('token', token.split(' ')[1], {secure: true});
     Cookies.set('id', user.data.id, {secure: true});
+
     dispatch({
       type: LOGIN,
       payload: user.data,
     });
-  } else {
+  } 
+  else {
     dispatch({
       type: AUTH_FAILURE,
       payload: user
@@ -93,7 +107,9 @@ export const logout = () => async(dispatch) => {
       "Authorization": `Bearer ${Cookies.get('token')}`
     }
   }
+
   const res = await fetch('http://localhost:3000/api/logout', config);
+
   dispatch({
     type: LOGOUT,
   });
@@ -107,14 +123,17 @@ export const getUser = (id) => async(dispatch) => {
       "Authorization": `Bearer ${Cookies.get('token')}`
     }
   };
+
   const res = await fetch(`http://localhost:3000/api/users/${id}`, config);
   const user = await res.json();
+
   if (user.data) {
     dispatch({
       type: GET_USER,
       payload: user.data,
     });
-  } else {
+  } 
+  else {
     dispatch({
       type: AUTH_FAILURE,
       payload: user

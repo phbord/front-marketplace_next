@@ -11,14 +11,14 @@ const { Content } = Layout;
 export const Home = () => {
 	const { Meta } = Card;
   const dispatch = useDispatch()
-	const flats = useSelector(state => state.realestates.realestates)
+	const flats = useSelector(state => state.realestates.realestates) || []
 	
 	React.useEffect(() => {
 		dispatch(findRealestates('real_estates'))
 	}, [])
 
 	return (
-		<div>
+		<>
 			<div className="home-header">
 				<div className="bg-img-desc">
 					<h1>List of real estates</h1>
@@ -41,5 +41,5 @@ export const Home = () => {
 					))}
 				</Row>
 			</Content>
-		</div>)
+		</>)
 }

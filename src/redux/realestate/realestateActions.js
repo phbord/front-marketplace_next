@@ -3,12 +3,12 @@ import Cookies from 'js-cookie'
 
 import { REALESTATE_SUCCESS, REALESTATE_FAILURE } from './realestateTypes'
 
-export const findOneRealestate = (url) => async (dispatch) => {
+export const findOneRealestates = (url) => async (dispatch) => {
   const token = Cookies.get('token')
 
   const config = {
     method: 'GET',
-    //headers: { 'Authorization': `Bearer ${token}` },
+    headers: { 'Authorization': `Bearer ${token}` },
   };
 
   const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);

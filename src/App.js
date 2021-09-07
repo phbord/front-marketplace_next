@@ -1,21 +1,32 @@
-import { Navbar } from "components/Navbar";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout } from 'antd';
 
+import { Navbar } from "components/Navbar";
 import { Home } from "pages/Home";
 import Realestate from "pages/Realestate";
 import { Other } from "pages/Other";
 import { Login } from "pages/Login";
 import { Register } from "pages/Register";
-
-const { Content } = Layout;
+import { findRealestates } from './redux/realestates/realestatesActions'
 
 function App() {
+  const dispatch = useDispatch()
+	const flats = useSelector(state => state.realestates.realestates) || {}
+  const [fetchOnce, setFetchOnce] = React.useState(false);
+	
+	React.useEffect(() => {
+    if (!fetchOnce) {
+      dispatch(findRealestates(`real_estates`))
+      setFetchOnce(true)
+    }
+	}, [fetchOnce, dispatch, flats])
+	
 	return (
 		<Layout className="layout" style={{ backgroundColor: 'transparent' }}>
 			<Router>
 				<Navbar />
-				<Content className="site-layout" style={{ padding: "0 50px", marginTop: 64 }}>
 				<Switch>
 					<Route exact path="/">
 						<Home />
@@ -33,7 +44,6 @@ function App() {
 						<Register />
 					</Route>
 				</Switch>
-				</Content>
 			</Router>
 		</Layout>
 	);
