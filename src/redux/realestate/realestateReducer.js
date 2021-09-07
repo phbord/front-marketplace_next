@@ -3,16 +3,16 @@ import React from 'react';
 import { REALESTATE_SUCCESS, REALESTATE_FAILURE } from './realestateTypes'
 
 const initialState = {
-  realestates: null,
+  realestate: null,
   errors: ''
 };
 
-const realestatesReducer = (state = initialState, action) => {
+const realestateReducer = (state = initialState, action) => {
   switch(action.type) {
     case REALESTATE_SUCCESS:
       return {
         ...state,
-        realestates: action.payload
+        realestate: action.payload
       }
     case REALESTATE_FAILURE:
       return {
@@ -24,4 +24,4 @@ const realestatesReducer = (state = initialState, action) => {
   }
 };
 
-export default realestatesReducer;
+export default realestateReducer;
