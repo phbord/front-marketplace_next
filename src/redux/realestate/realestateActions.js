@@ -1,9 +1,9 @@
 import React from 'react';
 import Cookies from 'js-cookie'
 
-import { REALESTATES_SUCCESS, REALESTATES_FAILURE } from './realestatesTypes'
+import { REALESTATE_SUCCESS, REALESTATE_FAILURE } from './realestateTypes'
 
-export const findRealestates = (url) => async (dispatch) => {
+export const findOneRealestate = (url) => async (dispatch) => {
   const token = Cookies.get('token')
 
   const config = {
@@ -16,13 +16,13 @@ export const findRealestates = (url) => async (dispatch) => {
 
   if (data) {
     dispatch({
-      type: REALESTATES_SUCCESS,
+      type: REALESTATE_SUCCESS,
       payload: data
     })
   }
   else {
     dispatch({
-      type: REALESTATES_FAILURE,
+      type: REALESTATE_FAILURE,
       payload: data
     })
   }
