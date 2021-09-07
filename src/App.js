@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Layout } from 'antd';
 
 import { Home } from "pages/Home";
+import Realestate from "pages/Realestate";
 import { Other } from "pages/Other";
 import { Login } from "pages/Login";
 import { Register } from "pages/Register";
@@ -17,6 +18,9 @@ function App() {
 				<Switch>
 					<Route exact path="/">
 						<Home />
+					</Route>
+					<Route exact path="/real_estates/:id">
+						<Realestate />
 					</Route>
 					<Route path="/other">
 						<Other />

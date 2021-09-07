@@ -1,0 +1,30 @@
+.ant-carousel .slick-dots.slick-dots-bottom {
+  bottom: 4rem;
+}
+
+.realestate-carousel {
+  height: $bg-img-height;
+  background-color: $dark;
+
+  & > div {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .ant-image {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      transform: translateY(-50%);
+      overflow: hidden;
+    }
+  }
+}
+
+.realestate-carousel-image {
+  width: 100%;
+}
