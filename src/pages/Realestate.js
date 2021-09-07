@@ -17,6 +17,7 @@ const Realestate = () => {
 		dispatch(findOneRealestate(`real_estates/${id}`))
 	}, [])
 
+const Realestate = () => {
   return (<>
     <Carousel autoplay style={{ padding: '4rem 0 3rem' }}>
       <div className="realestate-carousel">
