@@ -1,102 +1,41 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { register } from "redux/auth/authActions";
 
 export const Register = () => {
-	const onFinish = (values) => {
-		console.log('Success:', values);
-	  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 	
-	  const onFinishFailed = (errorInfo) => {
-		console.log('Failed:', errorInfo);
-	  };
-	return (
-		<Form
-			name="basic"
-			labelCol={{
-				span: 8,
-			}}
-			wrapperCol={{
-				span: 16,
-			}}
-			initialValues={{
-				remember: true,
-			}}
-			onFinish={onFinish}
-			onFinishFailed={onFinishFailed}
-			autoComplete="off"
-			style={{ paddingTop: "1rem" }}
-		>
-			<Form.Item
-				label="Username"
-				name="username"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your username!',
-					},
-				]}
-			>
-				<Input />
-			</Form.Item>
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-			<Form.Item
-				label="Email"
-				name="email"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your email!',
-					},
-				]}
-			>
-				<Input />
-			</Form.Item>
-			<Form.Item
-				label="Password"
-				name="password"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your password!',
-					},
-				]}
-			>
-				<Input.Password />
-			</Form.Item>
-			<Form.Item
-				label="Confirm password"
-				name="password_confirmation"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your confirmation password!',
-					},
-				]}
-			>
-				<Input.Password />
-			</Form.Item>
+  const registerMeIn = (e) => {
+    e.preventDefault();
+    const creds = {
+      user: {
+        email,
+        password
+      }
+    };
+    dispatch(register(creds));
+    history.push('/');
+  };
 
-			<Form.Item
-				name="remember"
-				valuePropName="checked"
-				wrapperCol={{
-					offset: 8,
-					span: 16,
-				}}
-			>
-				<Checkbox>Remember me</Checkbox>
-			</Form.Item>
+  return (
+    <>
+      <div className="login">
+        <h1>Register</h1>
+        <form onSubmit={e => registerMeIn(e)}>
+          <input type="text" id="email" placeholder="Your email" onChange={e => setEmail(e.target.value)} />
+          <input type="password" id="password" placeholder="Your Password" onChange={e => setPassword(e.target.value)} />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </>
+  );
+};
 
-			<Form.Item
-				wrapperCol={{
-					offset: 8,
-					span: 16,
-				}}
-			>
-				<Button type="primary" htmlType="submit">
-					Submit
-				</Button>
-			</Form.Item>
-		</Form>
-	)
-}
+

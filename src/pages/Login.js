@@ -1,78 +1,41 @@
 import React from 'react'
 import { Form, Input, Button, Checkbox } from 'antd';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { login } from "redux/auth/authActions";
 
 export const Login = () => {
-	const onFinish = (values) => {
-		console.log('Success:', values);
-	  };
-	
-	  const onFinishFailed = (errorInfo) => {
-		console.log('Failed:', errorInfo);
-	  };
-	return (
-		<Form
-			name="basic"
-			labelCol={{
-				span: 8,
-			}}
-			wrapperCol={{
-				span: 16,
-			}}
-			initialValues={{
-				remember: true,
-			}}
-			onFinish={onFinish}
-			onFinishFailed={onFinishFailed}
-			autoComplete="off"
-			style={{paddingTop:"1rem"}}
-		>
-			<Form.Item
-				label="Username"
-				name="username"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your username!',
-					},
-				]}
-			>
-				<Input />
-			</Form.Item>
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-			<Form.Item
-				label="Password"
-				name="password"
-				rules={[
-					{
-						required: true,
-						message: 'Please input your password!',
-					},
-				]}
-			>
-				<Input.Password />
-			</Form.Item>
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-			<Form.Item
-				name="remember"
-				valuePropName="checked"
-				wrapperCol={{
-					offset: 8,
-					span: 16,
-				}}
-			>
-				<Checkbox>Remember me</Checkbox>
-			</Form.Item>
+  const logMeIn = (e) => {
+    e.preventDefault();
+    const creds = {
+      user: {
+        email,
+        password
+      }
+    };
+    dispatch(login(creds));
+    history.push('/');
+  };
 
-			<Form.Item
-				wrapperCol={{
-					offset: 8,
-					span: 16,
-				}}
-			>
-				<Button type="primary" htmlType="submit">
-					Submit
-				</Button>
-			</Form.Item>
-		</Form>
-	)
-}
+  return (
+    <>
+      <div className="login">
+        <h1>Login</h1>
+        <form onSubmit={e => logMeIn(e)}>
+          <input type="text" id="email" placeholder="Your email" onChange={e => setEmail(e.target.value)} />
+          <input type="password" id="password" placeholder="Your Password" onChange={e => setPassword(e.target.value)} />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
+    </>
+  );
+};
+
+export default Login;
