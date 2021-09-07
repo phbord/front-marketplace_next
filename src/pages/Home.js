@@ -16,20 +16,27 @@ export const Home = () => {
 
 	return (
 		<div>
-			<Row gutter={16}>
-				{flats.map(flat => (
-					<>
-					<Col span={{xs: 24, sm: 12, md: 8, lg: 6}}>
-						<Card
-							key={uuid_v4()}
-							hoverable
-							style={{ border:"1px solid black" }}
-							cover={<img alt="example" src={flat.images[0]} />}>
-							<Meta title={flat.name}  />
-						</Card>
-					</Col>
-					</>
-				))}
-			</Row>
+			<div className="home-header">
+				<div>
+					<h1>List of real estates</h1>
+				</div>
+			</div>
+			<Content style={{ padding: '0 3.5rem' }}>
+				<Row gutter={16}>
+					{flats.map(flat => (
+						<>
+						<Col span={{xs: 24, sm: 12, md: 8, lg: 6}}>
+							<Card
+								key={uuid_v4()}
+								hoverable
+								style={{ border:"1px solid black" }}
+								cover={<img alt="example" src={flat.images[0]} />}>
+								<Meta title={flat.name}  />
+							</Card>
+						</Col>
+						</>
+					))}
+				</Row>
+			</Content>
 		</div>)
 }
