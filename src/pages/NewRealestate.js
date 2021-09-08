@@ -8,9 +8,9 @@ import { register } from "redux/auth/authActions";
 
 const NewRealestate = () => {
   const history = useHistory()
-	const [categories, setCategories] = React.useState([])
-	const [selectValue, setSelectValue] = React.useState('')
-	const [categoryValue, setCategoryValue] = React.useState('')
+  const [categories, setCategories] = React.useState([])
+  const [selectValue, setSelectValue] = React.useState('')
+  const [categoryValue, setCategoryValue] = React.useState('')
 
   const selectEl = React.useRef(null)
   const titleEl = React.useRef(null)
@@ -18,44 +18,45 @@ const NewRealestate = () => {
   const locationEl = React.useRef(null)
   const addressEl = React.useRef(null)
   const priceEl = React.useRef(null)
+  const images = React.useRef(null)
 
   const createNewRealestate = async e => {
     e.preventDefault();
-    
+
     let token = ''
 
-    const creds = {
-      title: titleEl.current.value,
-      description: descriptionEl.current.value,
-      location: locationEl.current.value,
-      category: selectValue ? selectValue : categoryValue,
-      address: addressEl.current.value,
-      price: priceEl.current.value,
-    };
-    console.log('CREDS => ',creds);
+    let formData = new FormData();
+
+    formData.append('title', titleEl.current.value)
+    formData.append('description', descriptionEl.current.value)
+    formData.append('location', locationEl.current.value)
+    formData.append('category', selectValue ? selectValue : categoryValue)
+    formData.append('address', addressEl.current.value)
+    formData.append('price', priceEl.current.value)
+    formData.append('images', images.current.files)
 
     const config = {
       method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        "Accept": "application/json",
         "Authorization": `Bearer ${Cookies.get('token')}`
       },
-      body: JSON.stringify(creds)
+      body: formData
     }
-    
+
     const res = await fetch(`${process.env.REACT_APP_API_URL}/real_estates`, config);
-    
+
     history.push('/');
   }
 
   const getCategories = async (url) => {
     const config = {
-			method: 'GET',
-		};
+      method: 'GET',
+    };
 
-		const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
-		const data = await response.json();
-		
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const data = await response.json();
+
     setCategories(data)
     setCategoryValue(data[0].title)
   }
@@ -72,18 +73,18 @@ const NewRealestate = () => {
     <>
       <div className="container my-5">
         <h1 className="mt-5">New real estate</h1>
-        <form onSubmit={e => createNewRealestate(e)}>
+        <form onSubmit={e => createNewRealestate(e)} encType="multipart/form-data">
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>
-            <input type="text" className="form-control" id="title" ref={titleEl}/>
+            <input type="text" className="form-control" id="title" ref={titleEl} />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <textarea className="form-control" id="description" ref={descriptionEl}/>
+            <textarea className="form-control" id="description" ref={descriptionEl} />
           </div>
           <div className="mb-3">
             <label htmlFor="location" className="form-label">Location</label>
-            <input type="text" className="form-control" id="location" ref={locationEl}/>
+            <input type="text" className="form-control" id="location" ref={locationEl} />
           </div>
           <div className="mb-3">
             <label htmlFor="category" className="form-label">Category</label>
@@ -97,11 +98,15 @@ const NewRealestate = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="address" className="form-label">Address</label>
-            <input type="text" className="form-control" id="address" ref={addressEl}/>
+            <input type="text" className="form-control" id="address" ref={addressEl} />
           </div>
           <div className="mb-3">
             <label htmlFor="price" className="form-label">Price</label>
-            <input type="text" className="form-control" id="price" ref={priceEl}/>
+            <input type="text" className="form-control" id="price" ref={priceEl} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="images" className="form-label">Images</label>
+            <input type="file" className="form-control" id="images" multiple accept="image/*" ref={images} />
           </div>
           <div className="mb-3">
             <button type="submit" className="btn btn-primary">Submit</button>
