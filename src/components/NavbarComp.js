@@ -69,11 +69,20 @@ export const NavbarComp = () => {
 
         <NavDropdown.Item >
           {cookie && <li className="nav-item">
+            <Link className="nav-link" to="/new_real_estate">
+              <span className="menu-links">New real estate</span>
+            </Link>
+          </li>}
+        </NavDropdown.Item>
+
+        <NavDropdown.Item >
+          {cookie && <li className="nav-item">
             <Link className="nav-link" to="/profile">
             <span className="menu-links">Profile</span>
             </Link>
           </li>}
         </NavDropdown.Item>
+
 
       </NavDropdown>
     </Nav>
