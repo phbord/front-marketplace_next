@@ -44,6 +44,11 @@ export const Navbar = () => {
             </Link>
           </li>}
           {cookie && <li className="nav-item">
+            <Link className="nav-link" to="/new_real_estate">
+              <span className="menu-links">New real estate</span>
+            </Link>
+          </li>}
+          {cookie && <li className="nav-item">
             <Link className="nav-link" to="#" onClick={e => logMeOut(e)}>
               <span className="menu-links">Logout</span>
             </Link>
