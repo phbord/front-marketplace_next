@@ -1,6 +1,7 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
-import { Carousel, Image } from 'antd';
+import { useParams, Link } from "react-router-dom";
+import { v4 as uuid_v4 } from "uuid";
+import Carousel from 'react-bootstrap/Carousel'
 
 export const Realestate = () => {
   const { id } = useParams()
@@ -9,6 +10,7 @@ export const Realestate = () => {
   React.useEffect(() => {
     getListing(`real_estates/${id}`)
     console.log('listing:', listing)
+    console.log('listing.images_url: ',listing.images_url)
   }, [])
 
   const getListing = async (url) => {
@@ -26,21 +28,14 @@ export const Realestate = () => {
   return (<>
     {listing ? (
       <>
-        <Carousel autoplay style={{ padding: '4rem 0 3rem' }}>
-          <div className="realestate-carousel">
-            <div>
-              <Image className="realestate-carousel-image"
-                preview={{ visible: false }}
-                src={`${process.env.REACT_APP_API_URL}${listing.images_url[0]}` || "https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} />
-            </div>
-          </div>
-          <div className="realestate-carousel">
-            <div>
-              <Image className="realestate-carousel-image"
-                preview={{ visible: false }}
-                src={`${process.env.REACT_APP_API_URL}${listing.images_url[1]}` || "https://images.pexels.com/photos/1059078/pexels-photo-1059078.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} />
-            </div>
-          </div>
+        <Carousel id="carouselRealEstate" className="carousel carousel-dark slide" data-bs-ride="carousel">
+          {
+            listing?.images_url?.map(item => (
+              <Carousel.Item key={uuid_v4()}>
+                <img src={`${process.env.REACT_APP_API_URL}${item}`} className="d-block w-100" alt=""/>
+              </Carousel.Item>
+            ))
+          }
         </Carousel>
         <div className="container" style={{ padding: '0 3.5rem 3rem' }}>
           <h1>{listing.title}</h1>
@@ -49,6 +44,7 @@ export const Realestate = () => {
           <p>Address: {listing.address}</p>
           <p>{listing.description}</p>
           {<p>Owner: {listing?.user?.email}</p>}
+          <Link to="/" className="btn btn-primary">Back</Link>
         </div>
       </>
     ) : (
