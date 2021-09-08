@@ -1,19 +1,24 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import { Layout, Card } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
-import { getListing } from 'Utils/fetchFunctions';
-
-const cookie = Cookies.get('token');
 
 export const Home = () => {
 	const [flats, setFlats] = React.useState([]);
 
 	React.useEffect(() => {
-		setFlats(getListing('real_estates'))
-		console.log(flats)
+		getListing('real_estates')
 	}, [])
+
+	const getListing = async(url) => {
+		const config = {
+			method: 'GET',
+		};
+
+		const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+		const data = await response.json();
+		console.log(data)
+		setFlats(data)
+	};
 
 	return (
 		<>
@@ -22,25 +27,26 @@ export const Home = () => {
 					<h1>List of real estates</h1>
 				</div>
 			</div>
-			<Content style={{ padding: '0 3.5rem' }}>
-				<Row gutter={16}>
-					{flats ? ( flats.map(flat => (
-						<Col span={{xs: 24, sm: 12, md: 8, lg: 6}} key={uuid_v4()}>
-							<Link to={`/real_estates/${flat.id}`} className="card-link">
-								<Card hoverable
-											style={{ border:"1px solid black" }}
-											title={flat.title}
-											cover={<img alt="example" src={flat.id} />}>
-									<p>Price : {flat.price} €</p>
-									<p>location : {flat.location}</p>
-								</Card>
-							</Link>
-						</Col>
-					))
-					):(
+			<div className="container" style={{ padding: '0 3.5rem' }}>
+				<ul className="row">
+					{flats ? (
+						flats.map(flat => (
+							<li className="col-12 col-sm-6 col-md-4 col-lg-3" key={uuid_v4()}>
+								<Link to={`/real_estates/${flat.id}`} className="card-link">
+									<div className="card h-100">
+										<div className="card-body">
+											<h5>{flat.title}</h5>
+											<p>Price : {flat.price} €</p>
+											<p>location : {flat.location}</p>
+										</div>
+									</div>
+								</Link>
+							</li>
+						))
+					) : (
 						<h2>Loading...</h2>
 					)}
-				</Row>
-			</Content>
+				</ul>
+			</div>
 		</>)
 }
