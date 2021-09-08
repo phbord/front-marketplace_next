@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { logout } from "redux/auth/authActions";
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button, Row, Col, Container } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const { Header } = Layout;
 
