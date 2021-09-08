@@ -19,9 +19,6 @@ export const Navbar = () => {
     history.push('/');
   }
 
-
-
-
 	return (
 		<nav className="navbar">
       <h1>THPGram</h1>

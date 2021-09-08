@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Layout, Card, Col, Row } from 'antd';
+import { Layout, Card } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
+import Cookies from "js-cookie";
 
-const { Content } = Layout;
+const cookie = Cookies.get('token');
 
 export const Home = ({flats}) => {
 	const { Meta } = Card;
@@ -15,22 +16,21 @@ export const Home = ({flats}) => {
 					<h1>List of real estates</h1>
 				</div>
 			</div>
-			<Content style={{ padding: '0 3.5rem' }}>
-				<Row gutter={16}>
+			<div className="container">
+				<ul className="row">
 					{flats && flats.map(flat => (
-						<Col span={{xs: 24, sm: 12, md: 8, lg: 6}} key={uuid_v4()}>
-							<Link to={`/real_estates/${flat.id}`} className="card-link">
-								<Card hoverable
-											style={{ border:"1px solid black" }}
-											title={flat.title}
-											cover={<img alt="example" src={flat.id} />}>
-									<p>Price : {flat.price} €</p>
-									<p>location : {flat.location}</p>
-								</Card>
-							</Link>
-						</Col>
+						<li className="col-12 col-sm_6 col-md-4 col-lg-3 mb-3" key={uuid_v4()}>
+							<Card className="card h-100">
+								{/* <img src="" className="card-img-top" alt=""/> */}
+								<div className="card-body">
+									<h5 className="card-title">{flat.price} €</h5>
+									<p className="card-text">location : {flat.location}</p>
+									{ cookie && <Link to={`/real_estates/${flat.id}`} className="btn btn-primary">Details</Link> }
+								</div>
+							</Card>
+						</li>
 					))}
-				</Row>
-			</Content>
+				</ul>
+			</div>
 		</>)
 }
