@@ -43,45 +43,45 @@ export const NavbarComp = () => {
           >
         <NavDropdown title="Menu" id="navbarScrollingDropdown">
 
-          <NavDropdown.Item >
-            {!cookie && <li className="nav-item">
+        
+            {!cookie && <NavDropdown.Item ><li className="nav-item">
               <Link className="nav-link" to="/login">
               <span className="menu-links">Login</span>
               </Link>
-            </li>}
-          </NavDropdown.Item>
+            </li></NavDropdown.Item>}
+         
 
-        <NavDropdown.Item >
-          {!cookie && <li className="nav-item">
+        
+          {!cookie && <NavDropdown.Item ><li className="nav-item">
             <Link className="nav-link" to="/register">
             <span className="menu-links">Register</span>
             </Link>
-          </li>}
-        </NavDropdown.Item>
+          </li></NavDropdown.Item>}
+        
 
-        <NavDropdown.Item >
-          {cookie && <li className="nav-item">
+        
+          {cookie && <NavDropdown.Item ><li className="nav-item">
             <Link className="nav-link" to="#" onClick={e => logMeOut(e)}>
             <span className="menu-links">Logout</span>
             </Link>
-          </li>}
-        </NavDropdown.Item>
+          </li></NavDropdown.Item>}
+        
 
-        <NavDropdown.Item >
-          {cookie && <li className="nav-item">
+        
+          {cookie && <NavDropdown.Item ><li className="nav-item">
             <Link className="nav-link" to="/new_real_estate">
               <span className="menu-links">New real estate</span>
             </Link>
-          </li>}
-        </NavDropdown.Item>
+          </li></NavDropdown.Item>}
+        
 
-        <NavDropdown.Item >
-          {cookie && <li className="nav-item">
+       
+          {cookie && <NavDropdown.Item ><li className="nav-item">
             <Link className="nav-link" to="/profile">
             <span className="menu-links">Profile</span>
             </Link>
-          </li>}
-        </NavDropdown.Item>
+          </li></NavDropdown.Item>}
+        
 
 
       </NavDropdown>
