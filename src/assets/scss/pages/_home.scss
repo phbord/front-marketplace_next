@@ -19,8 +19,8 @@
   }
 }
 
-.ant-card {
-  * {
+.card-link {
+  &,& * {
     text-decoration: none;
   }
 }

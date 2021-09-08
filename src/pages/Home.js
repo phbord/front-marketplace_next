@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { Layout, Card, Col, Row } from 'antd';
+import { useSelector } from 'react-redux'
+import { Layout, Card } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
 import { getListing } from 'Utils/fetchFunctions';
 
-const { Content } = Layout;
+const cookie = Cookies.get('token');
 
 export const Home = () => {
 	const [flats, setFlats] = React.useState([]);

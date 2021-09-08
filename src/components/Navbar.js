@@ -20,42 +20,43 @@ export const Navbar = () => {
 
 	return (
   <>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <div class="row align-items-start">
-          <a class="navbar-brand" ><Link className="title" to="/">THPGram</Link></a>
+    <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div className="container-fluid">
+      <div className="row align-items-start">
+        <Link className="navbar-brand title" to="/">Marketplace</Link>
       </div>
-      <div class="row align-items-center" name="search-input">
-      { /*<form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> 
-          <button class="btn btn-outline-success" type="submit">Search</button>
+      <div className="row align-items-center" name="search-input">
+      { /*<form className="d-flex">
+          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"> 
+          <button className="btn btn-outline-success" type="submit">Search</button>
         </form> */ }
       </div>
-      <div class="row align-items-end" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item">
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" >{!cookie && <Link className="menu-links"to="/login">Login</Link>}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" >{!cookie && <Link className="menu-links" to="/register">Register</Link>}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" >{cookie && <Link className="menu-links" to="#" onClick={e => logMeOut(e)}>Logout</Link>}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" >{cookie && <Link className="menu-links" to="/profile">Profile</Link>}</a>
-          </li>
-          
+      <div className="row align-items-end" id="navbarCollapse">
+        <ul className="navbar-nav me-auto mb-2 mb-md-0">
+          {!cookie && <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              <span className="menu-links">Login</span>
+            </Link>
+          </li>}
+          {!cookie && <li className="nav-item">
+            <Link className="nav-link" to="/register">
+              <span className="menu-links">Register</span>
+            </Link>
+          </li>}
+          {cookie && <li className="nav-item">
+            <Link className="nav-link" to="#" onClick={e => logMeOut(e)}>
+              <span className="menu-links">Logout</span>
+            </Link>
+          </li>}
+          {cookie && <li className="nav-item">
+            <Link className="nav-link" to="/profile">
+              <span className="menu-links">Profile</span>
+            </Link>
+          </li>}
         </ul>
       </div>
     </div>
   </nav>
-
 	</>
   )
 }
-
-
-

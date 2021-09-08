@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { Carousel, Layout, Image, Space, Col, Row } from 'antd';
 import { getListing } from 'Utils/fetchFunctions';
 
-const { Content } = Layout;
-
 export const Realestate = () => {
   const { id } = useParams()
   const [listing, setListing] = React.useState({})
