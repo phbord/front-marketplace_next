@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { Carousel, Image } from 'antd';
 
-import { findOneRealestates, findOneCategories } from '../redux/realestate/realestateActions'
+import { findOneRealestates, findOneCategories } from '../redux/realestates/realestatesActions'
 
 export const Realestate = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
-	const flat = useSelector(state => state.realestate.realestate) || {}
+	const flat = useSelector(state => state.realestates.realestate) || {}
   const [fetchOnce, setFetchOnce] = React.useState(false);
 	
 	React.useEffect(() => {
@@ -43,9 +43,8 @@ export const Realestate = () => {
           <p>Price: <strong>{flat.price}</strong></p>
           <p>Address: {flat.address}</p>
           <p>{flat.description}</p>
-          {/* <p>Owner: {flat.user.email}</p> */}
-          <Link to="/" className="btn btn-primary">Home</Link>
-        </div>
+          { <p>Owner: {flat?.user?.email}</p> }
+        </Content>
       </>
     ) : (
       <>
