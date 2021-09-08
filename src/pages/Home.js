@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import { Layout, Card } from 'antd';
 import { v4 as uuid_v4 } from "uuid";
 import Cookies from "js-cookie";
@@ -8,6 +9,7 @@ const cookie = Cookies.get('token');
 
 export const Home = ({flats}) => {
 	const { Meta } = Card;
+	const connected = useSelector(state => state.auth.user)
 
 	return (
 		<>
@@ -25,7 +27,7 @@ export const Home = ({flats}) => {
 								<div className="card-body">
 									<h5 className="card-title">{flat.price} €</h5>
 									<p className="card-text">location : {flat.location}</p>
-									{ cookie && <Link to={`/real_estates/${flat.id}`} className="btn btn-primary">Details</Link> }
+									{ connected && <Link to={`/real_estates/${flat.id}`} className="btn btn-primary">Details</Link> }
 								</div>
 							</Card>
 						</li>
