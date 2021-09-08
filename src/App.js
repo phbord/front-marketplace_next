@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Layout } from 'antd';
 
-import { Navbar } from "components/Navbar";
+import { NavbarComp } from "components/NavbarComp";
 import { Home } from "pages/Home";
 import Realestate from "pages/Realestate";
 import { Other } from "pages/Other";
@@ -25,7 +25,7 @@ function App() {
 	return (
 		<Layout className="layout" style={{ backgroundColor: 'transparent' }}>
 			<Router>
-				<Navbar />
+				<NavbarComp />
 				<Switch>
 					<Route exact path="/">
 						<Home />
