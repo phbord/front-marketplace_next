@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { Carousel, Image } from 'antd';
 
@@ -44,6 +44,7 @@ export const Realestate = () => {
           <p>Address: {flat.address}</p>
           <p>{flat.description}</p>
           { <p>Owner: {flat?.user?.email}</p> }
+          <Link to="/" className="btn btn-primary">Back</Link>
         </div>
       </>
     ) : (

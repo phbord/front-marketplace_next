@@ -18,6 +18,10 @@ export const Navbar = () => {
     history.push('/');
   }
 
+  const logMeIn = (e) => {
+    e.preventDefault()
+  }
+
 	return (
   <>
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -34,7 +38,7 @@ export const Navbar = () => {
       <div className="row align-items-end" id="navbarCollapse">
         <ul className="navbar-nav me-auto mb-2 mb-md-0">
           {!cookie && <li className="nav-item">
-            <Link className="nav-link" to="/login">
+            <Link className="nav-link" to="/login" onClick={e => logMeIn(e)}>
               <span className="menu-links">Login</span>
             </Link>
           </li>}
@@ -43,12 +47,12 @@ export const Navbar = () => {
               <span className="menu-links">Register</span>
             </Link>
           </li>}
-          {!cookie && <li className="nav-item">
+          {cookie && <li className="nav-item">
             <Link className="nav-link" to="#" onClick={e => logMeOut(e)}>
               <span className="menu-links">Logout</span>
             </Link>
           </li>}
-          {!cookie && <li className="nav-item">
+          {cookie && <li className="nav-item">
             <Link className="nav-link" to="/profile">
               <span className="menu-links">Profile</span>
             </Link>
