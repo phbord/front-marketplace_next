@@ -1,12 +1,9 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { Carousel, Layout, Image, Space, Col, Row } from 'antd';
-import { bottom } from '@popperjs/core';
+import { Carousel, Image } from 'antd';
 
 import { findOneRealestates, findOneCategories } from '../redux/realestates/realestatesActions'
-
-const { Content } = Layout;
 
 export const Realestate = () => {
   const dispatch = useDispatch()
@@ -40,7 +37,7 @@ export const Realestate = () => {
             </div>
           </div>
         </Carousel>
-        <Content style={{ padding: '0 3.5rem 3rem' }}>
+        <div className="container mb-4">
           <h1>{flat.title}</h1>
           <p>Location: {flat.location}</p>
           <p>Price: <strong>{flat.price}</strong></p>
