@@ -1,35 +1,28 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux'
 import { Carousel, Layout, Image, Space, Col, Row } from 'antd';
-import { bottom } from '@popperjs/core';
-
-import { findOneRealestates, findOneCategories } from '../redux/realestates/realestatesActions'
+import { getListing } from 'Utils/fetchFunctions';
 
 const { Content } = Layout;
 
 export const Realestate = () => {
-  const dispatch = useDispatch()
   const { id } = useParams()
-	const flat = useSelector(state => state.realestates.realestate) || {}
-  const [fetchOnce, setFetchOnce] = React.useState(false);
-	
+  const [listing, setListing] = React.useState({})
+
 	React.useEffect(() => {
-    if (!fetchOnce) {
-      dispatch(findOneRealestates(`real_estates/${id}`))
-      setFetchOnce(true)
-    }
-	}, [fetchOnce, dispatch, flat])
+    setListing(getListing(`real_estates/${id}`))
+	}, [listing])
+
 
   return (<>
-    {flat ? (
+    {listing ? (
       <>
         <Carousel autoplay style={{ padding: '4rem 0 3rem' }}>
           <div className="realestate-carousel">
             <div>
               <Image className="realestate-carousel-image" 
                       preview={{ visible: false }}
-                      src="https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                      src={ `${process.env.REACT_APP_API_URL}${listing?.images_url[0]}` || "https://images.pexels.com/photos/269077/pexels-photo-269077.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"} />
             </div>
           </div>
           <div className="realestate-carousel">
@@ -41,18 +34,16 @@ export const Realestate = () => {
           </div>
         </Carousel>
         <Content style={{ padding: '0 3.5rem 3rem' }}>
-          <h1>{flat.title}</h1>
-          <p>Location: {flat.location}</p>
-          <p>Price: <strong>{flat.price}</strong></p>
-          <p>Address: {flat.address}</p>
-          <p>{flat.description}</p>
-          { <p>Owner: {flat?.user?.email}</p> }
+          <h1>{listing.title}</h1>
+          <p>Location: {listing.location}</p>
+          <p>Price: <strong>{listing.price}</strong></p>
+          <p>Address: {listing.address}</p>
+          <p>{listing.description}</p>
+          { <p>Owner: {listing?.user?.email}</p> }
         </Content>
       </>
     ) : (
-      <>
-        loading
-      </>
+      <h2>Loading...</h2>
     )}
   </>
   );
