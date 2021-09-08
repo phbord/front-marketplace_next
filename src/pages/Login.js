@@ -28,7 +28,7 @@ export const Login = () => {
     <>
       <div className="login">
         <h1>Login</h1>
-        <form onSubmit={e => logMeIn(e)}>
+        <form className= "login-form" onSubmit={e => logMeIn(e)}>
           <input type="text" id="email" placeholder="Your email" onChange={e => setEmail(e.target.value)} />
           <input type="password" id="password" placeholder="Your Password" onChange={e => setPassword(e.target.value)} />
           <input type="submit" value="Login" />
