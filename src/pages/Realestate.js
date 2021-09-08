@@ -44,7 +44,7 @@ export const Realestate = () => {
           <p>Address: {flat.address}</p>
           <p>{flat.description}</p>
           { <p>Owner: {flat?.user?.email}</p> }
-        </Content>
+        </div>
       </>
     ) : (
       <>

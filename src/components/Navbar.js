@@ -47,7 +47,6 @@ export const Navbar = () => {
           <li class="nav-item">
             <a class="nav-link" >{cookie && <Link className="menu-links" to="/profile">Profile</Link>}</a>
           </li>
-          
         </ul>
       </div>
     </div>
