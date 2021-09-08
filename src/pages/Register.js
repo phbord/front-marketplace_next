@@ -25,9 +25,9 @@ export const Register = () => {
 
   return (
     <>
-      <div className="login">
+      <div className="register">
         <h1>Register</h1>
-        <form onSubmit={e => registerMeIn(e)}>
+        <form className= "register-form" onSubmit={e => registerMeIn(e)}>
           <input type="text" id="email" placeholder="Your email" onChange={e => setEmail(e.target.value)} />
           <input type="password" id="password" placeholder="Your Password" onChange={e => setPassword(e.target.value)} />
           <input type="submit" value="Login" />
