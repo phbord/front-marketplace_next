@@ -8,9 +8,20 @@ import Realestate from "pages/Realestate";
 import { Other } from "pages/Other";
 import { Login } from "pages/Login";
 import { Register } from "pages/Register";
+import Profile from "pages/Profile";
+import { useDispatch, useSelector } from 'react-redux';
+import { getUser } from 'redux/auth/authActions';
+import Cookies from 'js-cookie';
 
 function App() {
-	
+	const dispatch = useDispatch();
+	const user = useSelector(state => state.auth.user);
+
+	React.useEffect(() => {
+		dispatch(getUser(Cookies.get('id')))
+		console.log(user)
+	}, [])
+
 	return (
 		<Layout className="layout" style={{ backgroundColor: 'transparent' }}>
 			<Router>
@@ -25,11 +36,14 @@ function App() {
 					<Route path="/other">
 						<Other />
 					</Route>
-					<Route exact path="/login" component={Login} >
+					<Route exact path="/login" >
 						<Login />
 					</Route>
-					<Route exact path="/register" component={Register} >
+					<Route exact path="/register" >
 						<Register />
+					</Route>
+					<Route exact path="/profile" >
+						<Profile user={user} />
 					</Route>
 				</Switch>
 			</Router>
