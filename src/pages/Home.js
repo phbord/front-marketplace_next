@@ -17,6 +17,7 @@ export const Home = () => {
 	const getListing = async (url) => {
 		const config = {
 			method: 'GET',
+			mode: 'cors',
 		};
 
 		const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
