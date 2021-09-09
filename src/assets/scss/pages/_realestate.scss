@@ -28,3 +28,13 @@
 .realestate-carousel-image {
   width: 100%;
 }
+
+.realestate-img-group {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  
+  img {
+    height: 15rem;
+  }
+}
