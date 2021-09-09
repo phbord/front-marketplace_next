@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/front-marketplace_next/static/css/main.251e38a8.chunk.css",
+    "main.js": "/front-marketplace_next/static/js/main.4500bafe.chunk.js",
+    "main.js.map": "/front-marketplace_next/static/js/main.4500bafe.chunk.js.map",
+    "runtime-main.js": "/front-marketplace_next/static/js/runtime-main.0104bdfb.js",
+    "runtime-main.js.map": "/front-marketplace_next/static/js/runtime-main.0104bdfb.js.map",
+    "static/js/2.ecbdccca.chunk.js": "/front-marketplace_next/static/js/2.ecbdccca.chunk.js",
+    "static/js/2.ecbdccca.chunk.js.map": "/front-marketplace_next/static/js/2.ecbdccca.chunk.js.map",
+    "static/js/3.8004ee35.chunk.js": "/front-marketplace_next/static/js/3.8004ee35.chunk.js",
+    "static/js/3.8004ee35.chunk.js.map": "/front-marketplace_next/static/js/3.8004ee35.chunk.js.map",
+    "index.html": "/front-marketplace_next/index.html",
+    "static/css/main.251e38a8.chunk.css.map": "/front-marketplace_next/static/css/main.251e38a8.chunk.css.map",
+    "static/js/2.ecbdccca.chunk.js.LICENSE.txt": "/front-marketplace_next/static/js/2.ecbdccca.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/front-marketplace_next/static/media/house.6219e07e.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0104bdfb.js",
+    "static/js/2.ecbdccca.chunk.js",
+    "static/css/main.251e38a8.chunk.css",
+    "static/js/main.4500bafe.chunk.js"
+  ]
+}
