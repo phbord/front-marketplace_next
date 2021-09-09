@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { v4 as uuid_v4 } from "uuid";
+import { Form } from "react-bootstrap";
 
 export const Home = () => {
 	const connected = useSelector(state => state.auth.user)
+	const [input, setInput] = React.useState('');
 	const [flats, setFlats] = React.useState([]);
+	const [flatsDefault, setFlatsDefault] = React.useState([]);
 
 	React.useEffect(() => {
 		getListing('real_estates')
@@ -20,15 +23,36 @@ export const Home = () => {
 		const data = await response.json();
 		
 		setFlats(data)
+		setFlatsDefault(data)
 	};
+
+	const updateInput = async (input) => {
+		const filtered = flatsDefault.filter(flat => {
+			return flat.title.toLowerCase().includes(input.toLowerCase())
+		})
+		setInput(input);
+		setFlats(filtered);
+	}
 
 	return (
 		<>
+
 			<div className="home-header">
 				<div className="bg-img-desc">
 					<h1>List of real estates</h1>
 				</div>
 			</div>
+
+			<div className="search-estates">
+  			<Form.Control 
+				size="lg" 
+				type="text" 
+				placeholder="Search a property" 
+				input={input}
+				onChange={(e) => updateInput(e.target.value)}
+				/>
+  		</div>
+
 			<div className="container" style={{ padding: '0 3.5rem' }}>
 				<ul className="row">
 					{flats ? (
