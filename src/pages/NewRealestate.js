@@ -65,8 +65,6 @@ const NewRealestate = ({crud}) => {
 
   const updateNewRealestate = async e => {
     e.preventDefault();
-
-    console.log('>>>>>>', crud);
   }
 
   const getCategories = async (url) => {
@@ -96,15 +94,15 @@ const NewRealestate = ({crud}) => {
               encType="multipart/form-data">
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>
-            <input type="text" className="form-control" id="title" ref={titleEl} value={crud === 'update' ? listing?.title : ''}/>
+            <input type="text" className="form-control" id="title" ref={titleEl}/>
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <textarea className="form-control" id="description" ref={descriptionEl} value={crud === 'update' ? listing?.description : ''}/>
+            <textarea className="form-control" id="description" ref={descriptionEl}/>
           </div>
           <div className="mb-3">
             <label htmlFor="location" className="form-label">Location</label>
-            <input type="text" className="form-control" id="location" ref={locationEl} value={crud === 'update' ? listing?.location : ''}/>
+            <input type="text" className="form-control" id="location" ref={locationEl}/>
           </div>
           {/* CATEGORIES (select) */}
           <div className="mb-3">
@@ -112,8 +110,7 @@ const NewRealestate = ({crud}) => {
             <select className="form-select" id="category" ref={selectEl} onChange={handleChange}>
               {
                 categories.map((cat, index) => (
-                  <option key={uuid_v4()} 
-                          selected={crud === 'update' && listing?.category?.title === cat.title ? listing?.location : ''}>
+                  <option key={uuid_v4()}>
                     {cat.title}
                   </option>
                 ))
@@ -122,11 +119,11 @@ const NewRealestate = ({crud}) => {
           </div>
           <div className="mb-3">
             <label htmlFor="address" className="form-label">Address</label>
-            <input type="text" className="form-control" id="address" ref={addressEl} value={crud === 'update' ? listing?.address : ''}/>
+            <input type="text" className="form-control" id="address" ref={addressEl}/>
           </div>
           <div className="mb-3">
             <label htmlFor="price" className="form-label">Price</label>
-            <input type="text" className="form-control" id="price" ref={priceEl} value={crud === 'update' ? listing?.price : ''}/>
+            <input type="text" className="form-control" id="price" ref={priceEl}/>
           </div>
           {/* IMAGES */}
           <div className="mb-3">
