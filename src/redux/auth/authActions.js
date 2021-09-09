@@ -118,9 +118,10 @@ export const logout = () => async(dispatch) => {
 export const getUser = (id) => async(dispatch) => {
   const config = {
     method: 'GET',
+    mode: 'cors',
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${Cookies.get('token')}`
+      "Authorization": `Bearer ${Cookies.get('token')}`,
     }
   };
 
