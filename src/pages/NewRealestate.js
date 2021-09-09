@@ -1,13 +1,24 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { v4 as uuid_v4 } from "uuid";
 import Cookies from 'js-cookie';
 
 import { register } from "redux/auth/authActions";
 
-const NewRealestate = () => {
+const NewRealestate = ({crud}) => {
   const history = useHistory()
+  const { id } = useParams()
+  const [listing, setListing] = React.useState('') || {}
+
+  // const [titleDb, setTitleDb] = React.useState('')
+  // const [descriptionDb, setDescriptionDb] = React.useState('')
+  // const [locationDb, setLocationDb] = React.useState('')
+  // const [addressDb, setAddressDb] = React.useState('')
+  // const [priceDb, setPriceDb] = React.useState('')
+  // const [categoryDb, setCategoryDb] = React.useState('')
+  // const [imagesDb, setImagesDb] = React.useState('')
+
   const [categories, setCategories] = React.useState([])
   const [selectValue, setSelectValue] = React.useState('')
   const [categoryValue, setCategoryValue] = React.useState('')
@@ -20,11 +31,22 @@ const NewRealestate = () => {
   const priceEl = React.useRef(null)
   const images = React.useRef(null)
 
+  const getListing = async (url) => {
+    const config = {
+      method: 'GET',
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const data = await response.json();
+
+    console.log('===> ', data);
+    setListing(data)
+  };
+
   const createNewRealestate = async e => {
     e.preventDefault();
 
     let token = ''
-
     let formData = new FormData();
 
     formData.append('title', titleEl.current.value)
@@ -49,6 +71,12 @@ const NewRealestate = () => {
     history.push('/');
   }
 
+  const updateNewRealestate = async e => {
+    e.preventDefault();
+
+    console.log('>>>>>>', crud);
+  }
+
   const getCategories = async (url) => {
     const config = {
       method: 'GET',
@@ -66,49 +94,68 @@ const NewRealestate = () => {
   }
 
   React.useEffect(() => {
+    getListing(`real_estates/${id}`)
     getCategories('categories')
   }, [])
 
   return (
     <>
       <div className="container my-5">
-        <h1 className="mt-5">New real estate</h1>
-        <form onSubmit={e => createNewRealestate(e)} encType="multipart/form-data">
+        <h1 className="mt-5">{crud === 'update' ? 'Update real estate' : 'New real estate'}</h1>
+        <form onSubmit={e => { crud === 'update' ? updateNewRealestate(e) : createNewRealestate(e) }} 
+              encType="multipart/form-data">
           <div className="mb-3">
             <label htmlFor="title" className="form-label">Title</label>
-            <input type="text" className="form-control" id="title" ref={titleEl} />
+            <input type="text" className="form-control" id="title" ref={titleEl} value={crud === 'update' ? listing?.title : ''}/>
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">Description</label>
-            <textarea className="form-control" id="description" ref={descriptionEl} />
+            <textarea className="form-control" id="description" ref={descriptionEl} value={crud === 'update' ? listing?.description : ''}/>
           </div>
           <div className="mb-3">
             <label htmlFor="location" className="form-label">Location</label>
-            <input type="text" className="form-control" id="location" ref={locationEl} />
+            <input type="text" className="form-control" id="location" ref={locationEl} value={crud === 'update' ? listing?.location : ''}/>
           </div>
+          {/* CATEGORIES (select) */}
           <div className="mb-3">
             <label htmlFor="category" className="form-label">Category</label>
             <select className="form-select" id="category" ref={selectEl} onChange={handleChange}>
               {
                 categories.map((cat, index) => (
-                  <option key={uuid_v4()}>{cat.title}</option>
+                  <option key={uuid_v4()} 
+                          selected={crud === 'update' && listing?.category?.title === cat.title ? listing?.location : ''}>
+                    {cat.title}
+                  </option>
                 ))
               }
             </select>
           </div>
           <div className="mb-3">
             <label htmlFor="address" className="form-label">Address</label>
-            <input type="text" className="form-control" id="address" ref={addressEl} />
+            <input type="text" className="form-control" id="address" ref={addressEl} value={crud === 'update' ? listing?.address : ''}/>
           </div>
           <div className="mb-3">
             <label htmlFor="price" className="form-label">Price</label>
-            <input type="text" className="form-control" id="price" ref={priceEl} />
+            <input type="text" className="form-control" id="price" ref={priceEl} value={crud === 'update' ? listing?.price : ''}/>
           </div>
+          {/* IMAGES */}
           <div className="mb-3">
+            {
+              crud === 'update' && listing?.images_url ? (
+                <ul className="realestate-img-group">
+                  <li className="me-2 mb-2"></li>
+                </ul>
+              )
+              : (
+                ''
+              )
+            }
             <label htmlFor="images" className="form-label">Images</label>
             <input type="file" className="form-control" id="images" multiple accept="image/*" ref={images} />
           </div>
-          <div className="mb-3">
+          {/* BUTTONS */}
+          <div className="mb-3 d-flex">
+            <button type="button" onClick={() => history.goBack()} className="btn btn-secondary me-2">Back</button>
             <button type="submit" className="btn btn-primary">Submit</button>
           </div>
         </form>

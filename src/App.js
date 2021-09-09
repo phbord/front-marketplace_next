@@ -35,7 +35,10 @@ function App() {
 						<Realestate />
 					</Route>
 					<Route path="/new_real_estate">
-						<NewRealestate />
+						<NewRealestate crud="create" />
+					</Route>
+					<Route exact path="/update_real_estate/:id">
+						<NewRealestate crud="update" />
 					</Route>
 					<Route path="/other">
 						<Other />
