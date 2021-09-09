@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Layout } from 'antd';
-
 import { NavbarComp } from "components/NavbarComp";
 import { Home } from "pages/Home";
 import Realestate from "pages/Realestate";
@@ -25,7 +23,6 @@ function App() {
 	}, [])
 
 	return (
-		<Layout className="layout" style={{ backgroundColor: 'transparent' }}>
 			<Router basename={baseName}>
 				<NavbarComp />
 				<Switch>
@@ -55,7 +52,7 @@ function App() {
 					</Route>
 				</Switch>
 			</Router>
-		</Layout>
+
 	);
 }
 
