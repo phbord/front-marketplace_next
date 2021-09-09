@@ -11,14 +11,6 @@ const NewRealestate = ({crud}) => {
   const { id } = useParams()
   const [listing, setListing] = React.useState('') || {}
 
-  // const [titleDb, setTitleDb] = React.useState('')
-  // const [descriptionDb, setDescriptionDb] = React.useState('')
-  // const [locationDb, setLocationDb] = React.useState('')
-  // const [addressDb, setAddressDb] = React.useState('')
-  // const [priceDb, setPriceDb] = React.useState('')
-  // const [categoryDb, setCategoryDb] = React.useState('')
-  // const [imagesDb, setImagesDb] = React.useState('')
-
   const [categories, setCategories] = React.useState([])
   const [selectValue, setSelectValue] = React.useState('')
   const [categoryValue, setCategoryValue] = React.useState('')
@@ -29,7 +21,9 @@ const NewRealestate = ({crud}) => {
   const locationEl = React.useRef(null)
   const addressEl = React.useRef(null)
   const priceEl = React.useRef(null)
-  const images = React.useRef(null)
+  const image1 = React.useRef(null)
+  const image2 = React.useRef(null)
+  const image3 = React.useRef(null)
 
   const getListing = async (url) => {
     const config = {
@@ -52,10 +46,12 @@ const NewRealestate = ({crud}) => {
     formData.append('title', titleEl.current.value)
     formData.append('description', descriptionEl.current.value)
     formData.append('location', locationEl.current.value)
-    formData.append('category', selectValue ? selectValue : categoryValue)
+    formData.append('category', selectValue ? selectValue : categories.filter(c => c.title === categoryValue)[0].id)
     formData.append('address', addressEl.current.value)
     formData.append('price', priceEl.current.value)
-    formData.append('images', images.current.files)
+    formData.append('image1', image1.current.files[0])
+    formData.append('image2', image2.current.files[0])
+    formData.append('image3', image3.current.files[0])
 
     const config = {
       method: 'POST',
@@ -65,9 +61,8 @@ const NewRealestate = ({crud}) => {
       },
       body: formData
     }
-
     const res = await fetch(`${process.env.REACT_APP_API_URL}/real_estates`, config);
-
+    console.log(res)
     history.push('/');
   }
 
@@ -81,10 +76,8 @@ const NewRealestate = ({crud}) => {
     const config = {
       method: 'GET',
     };
-
     const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
     const data = await response.json();
-
     setCategories(data)
     setCategoryValue(data[0].title)
   }
@@ -140,6 +133,18 @@ const NewRealestate = ({crud}) => {
           </div>
           {/* IMAGES */}
           <div className="mb-3">
+            <label htmlFor="image1" className="form-label">Image 1</label>
+            <input type="file" className="form-control" id="image1" required accept="image/*" ref={image1} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="image2" className="form-label">Image 2</label>
+            <input type="file" className="form-control" id="image2" accept="image/*" ref={image2} />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="image3" className="form-label">Image 3</label>
+            <input type="file" className="form-control" id="image3" accept="image/*" ref={image3} />
+          </div>
+          <div className="mb-3">
             {
               crud === 'update' && listing?.images_url ? (
                 <ul className="realestate-img-group">
@@ -150,8 +155,6 @@ const NewRealestate = ({crud}) => {
                 ''
               )
             }
-            <label htmlFor="images" className="form-label">Images</label>
-            <input type="file" className="form-control" id="images" multiple accept="image/*" ref={images} />
           </div>
           {/* BUTTONS */}
           <div className="mb-3 d-flex">
@@ -165,6 +168,3 @@ const NewRealestate = ({crud}) => {
 };
 
 export default NewRealestate;
-
-
-// "category_id" > select avec fetch get sur cat + renvoi du nom de la cat
