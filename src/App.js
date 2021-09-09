@@ -17,8 +17,10 @@ function App() {
 	const user = useSelector(state => state.auth.user);
 
 	React.useEffect(() => {
-		dispatch(getUser(Cookies.get('id')))
-		console.log(user)
+		if (user === undefined) {
+			dispatch(getUser(Cookies.get('id')))
+			console.log(user)
+		}
 	}, [])
 
 	return (
