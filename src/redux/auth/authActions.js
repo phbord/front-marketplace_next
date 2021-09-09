@@ -49,7 +49,7 @@ export const updateUser = (info) => async(dispatch) => {
     body: JSON.stringify(info)
   };
 
-  const res = await fetch(`http://localhost:3000/api/users/${Cookies.get('id')}`, config);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/users/${Cookies.get('id')}`, config);
   const user = await res.json();
 
   if (user.data !== undefined) {
@@ -77,7 +77,7 @@ export const login = (creds) => async(dispatch) => {
     body: JSON.stringify(creds)
   };
 
-  const res = await fetch(`http://localhost:3000/api/login`, config);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/login`, config);
 
   token = await res.headers.get('authorization')
 
@@ -108,7 +108,7 @@ export const logout = () => async(dispatch) => {
     }
   }
 
-  const res = await fetch('http://localhost:3000/api/logout', config);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/logout`, config);
 
   dispatch({
     type: LOGOUT,
@@ -124,7 +124,7 @@ export const getUser = (id) => async(dispatch) => {
     }
   };
 
-  const res = await fetch(`http://localhost:3000/api/users/${id}`, config);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/users/${id}`, config);
   const user = await res.json();
 
   if (user.data) {
