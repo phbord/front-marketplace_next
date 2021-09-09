@@ -15,6 +15,7 @@ const Profile = ({ user }) => {
   const getListing = async (url) => {
     const config = {
       method: 'GET',
+      mode: 'cors',
       headers: {
         'Authorization': `Bearer ${Cookies.get('token')}`
       }
