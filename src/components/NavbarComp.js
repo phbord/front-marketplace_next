@@ -18,7 +18,6 @@ export const NavbarComp = () => {
 
 	return (
     <>
-      
       <Navbar bg="light" expand="lg">
         <div className="container-fluid " >
           <Link className="navbar-brand title" to="/">Marketplace</Link>
