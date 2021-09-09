@@ -17,7 +17,7 @@ export const register = (info) => async(dispatch) => {
     body: JSON.stringify(info)
   };
 
-  const res = await fetch(`${process.env.REACT_APP_API_URL}/api/signup`, config);
+  const res = await fetch(`${process.env.REACT_APP_API_URL}api/signup`, config);
   console.log(res)
   token = await res.headers.get('authorization');
   const user = await res.json();

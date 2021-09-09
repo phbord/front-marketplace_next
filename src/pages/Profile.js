@@ -20,7 +20,7 @@ const Profile = ({ user }) => {
       }
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}${url}`, config);
     const data = await response.json();
     console.log('from get: ', data)
     setListing(data)
