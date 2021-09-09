@@ -1,10 +1,7 @@
 import React from 'react';
-import { useDispatch } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { v4 as uuid_v4 } from "uuid";
 import Cookies from 'js-cookie';
-
-import { register } from "redux/auth/authActions";
 
 const NewRealestate = ({crud}) => {
   const history = useHistory()
