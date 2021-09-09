@@ -13,6 +13,7 @@ import Profile from "pages/Profile";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/authActions';
 import Cookies from 'js-cookie';
+import { baseName } from 'services/api';
 
 function App() {
 	const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function App() {
 
 	return (
 		<Layout className="layout" style={{ backgroundColor: 'transparent' }}>
-			<Router>
+			<Router basename={baseName}>
 				<NavbarComp />
 				<Switch>
 					<Route exact path="/">

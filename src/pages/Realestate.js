@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from "react-router-dom";
 import { v4 as uuid_v4 } from "uuid";
 import Carousel from 'react-bootstrap/Carousel'
+import { API_LOCATION } from 'services/api';
 
 export const Realestate = () => {
   const { id } = useParams()
@@ -18,7 +19,7 @@ export const Realestate = () => {
       method: 'GET',
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const response = await fetch(`${API_LOCATION}/${url}`, config);
     const data = await response.json();
     console.log(data)
     setListing(data)

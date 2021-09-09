@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import React from "react";
 import { Link } from "react-router-dom";
+import { API_LOCATION } from "services/api";
 import { v4 as uuid_v4 } from "uuid";
 
 const Profile = ({ user }) => {
@@ -20,7 +21,7 @@ const Profile = ({ user }) => {
       }
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const response = await fetch(`${API_LOCATION}/${url}`, config);
     const data = await response.json();
     console.log('from get: ', data)
     setListing(data)

@@ -5,6 +5,7 @@ import { v4 as uuid_v4 } from "uuid";
 import Cookies from 'js-cookie';
 
 import { register } from "redux/auth/authActions";
+import { API_LOCATION } from 'services/api';
 
 const NewRealestate = ({crud}) => {
   const history = useHistory()
@@ -30,7 +31,7 @@ const NewRealestate = ({crud}) => {
       method: 'GET',
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const response = await fetch(`${API_LOCATION}/${url}`, config);
     const data = await response.json();
 
     console.log('===> ', data);
@@ -61,7 +62,7 @@ const NewRealestate = ({crud}) => {
       },
       body: formData
     }
-    const res = await fetch(`${process.env.REACT_APP_API_URL}/real_estates`, config);
+    const res = await fetch(`${API_LOCATION}/real_estates`, config);
     console.log(res)
     history.push('/');
   }
@@ -76,7 +77,7 @@ const NewRealestate = ({crud}) => {
     const config = {
       method: 'GET',
     };
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/${url}`, config);
+    const response = await fetch(`${API_LOCATION}/${url}`, config);
     const data = await response.json();
     setCategories(data)
     setCategoryValue(data[0].title)
