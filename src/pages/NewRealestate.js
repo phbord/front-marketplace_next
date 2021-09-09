@@ -43,7 +43,7 @@ const NewRealestate = ({crud}) => {
     formData.append('title', titleEl.current.value)
     formData.append('description', descriptionEl.current.value)
     formData.append('location', locationEl.current.value)
-    formData.append('category', selectValue ? selectValue : categories.filter(c => c.title === categoryValue)[0].id)
+    formData.append('category', selectValue ? selectValue : categoryValue)
     formData.append('address', addressEl.current.value)
     formData.append('price', priceEl.current.value)
     formData.append('image1', image1.current.files[0])
